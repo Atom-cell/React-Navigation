@@ -1,19 +1,19 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Pressable,
-  Button,
-} from "react-native";
+import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
 
-const InputScreen = ({ navigation }) => {
+const InputScreen = ({ route, navigation }) => {
   const [name, setName] = React.useState("");
   const [brand, setBrand] = React.useState("");
   const [qty, setQty] = React.useState(null);
   const [price, setPrice] = React.useState(null);
   const [productList, setProductList] = React.useState([]);
+
+  React.useEffect(() => {
+    if (route.params.list) {
+      setProductList(route.params.list);
+    } else {
+    }
+  }, []);
 
   const addItem = () => {
     if (name !== "" && brand !== "" && qty !== null && price !== null) {
@@ -75,6 +75,19 @@ const InputScreen = ({ navigation }) => {
           onPress={() => navigation.navigate("List", { list: productList })}
         >
           <Text>See Products</Text>
+        </Pressable>
+
+        <Pressable
+          style={styles.addBtn}
+          onPress={() =>
+            navigation.navigate({
+              name: "MainScreen",
+              params: { list: productList },
+              merge: true,
+            })
+          }
+        >
+          <Text>BACK</Text>
         </Pressable>
       </View>
     </View>

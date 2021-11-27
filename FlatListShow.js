@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, FlatList, ScrollView } from "react-native";
 
 export default function FlatListShow({ route, navigation }) {
   const { list } = route.params;
-  // console.log(list);
+
   return (
     <View style={styles.container}>
       <FlatList

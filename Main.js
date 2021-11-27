@@ -2,7 +2,13 @@ import React from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 
 const Main = ({ route, navigation }) => {
-  //   const { list } = route.params;
+  //   const { listlen } = route.params;
+
+  React.useEffect(() => {
+    if (route.params?.list) {
+    }
+  }, [route.params?.list]);
+
   return (
     <View style={styles.container}>
       {/* <Text style={{ fontSize: 25, fontStyle: "italic" }}>Shop User Panel</Text> */}
@@ -13,11 +19,15 @@ const Main = ({ route, navigation }) => {
       </View>
 
       <Pressable
-        onPress={() => navigation.navigate("Input")}
+        onPress={() =>
+          navigation.navigate("Input", { list: route.params?.list })
+        }
         style={styles.wrapper0}
       >
         <View style={styles.wrapper1}>
-          <Text style={styles.txt}>❤</Text>
+          <Text style={styles.txt}>
+            ❤ {route.params?.list ? route.params?.list.length : 0}
+          </Text>
           <Text style={styles.txt}> Products </Text>
         </View>
       </Pressable>
